@@ -43,7 +43,7 @@ public class FacebookController {
 		String response = null;
 		for(int i=0; i<array.length(); i++){
 		    JSONObject jsonObj = array.getJSONObject(i);
-		    response = FacebookRepository.buscaPorFiltro(jsonObj.getString("portal"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"));
+		    response = FacebookRepository.buscaPorFiltro(jsonObj.getString("portal"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"),jsonObj.getString("link"));
 		}
 		
 		return response.toString();

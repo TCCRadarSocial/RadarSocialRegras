@@ -42,11 +42,11 @@ public class FacebookRepository {
 		
 	}
 	
-	public static String buscaPorFiltro(String portal,String dataInicial, String dataFinal) throws ParseException{
+	public static String buscaPorFiltro(String portal,String dataInicial, String dataFinal, String link) throws ParseException{
 		
 		
 		FacebookDao dao = new FacebookDao();		
-		DBCursor cursor = dao.buscaPorFiltro(portal,dataInicial,dataFinal);
+		DBCursor cursor = dao.buscaPorFiltro(portal,dataInicial,dataFinal,link);
 
         String serialize = JSON.serialize(cursor);
         System.out.println(serialize);
