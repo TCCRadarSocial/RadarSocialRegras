@@ -27,10 +27,15 @@ public class FacebookController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/facebookPortais", method = RequestMethod.GET,produces = "application/json")
-	public @ResponseBody String facebookPortais(){ 
+	@RequestMapping(value = "/facebookPortais", method = RequestMethod.POST,produces = "application/json")
+	public @ResponseBody String facebookPortais(@RequestBody String body){ 
 		
-		AggregationOutput response = FacebookRepository.getPortais();
+		JSONArray array = new JSONArray(body); 
+		String response = null;
+		for(int i=0; i<array.length(); i++){
+		    JSONObject jsonObj = array.getJSONObject(i);
+		    response = FacebookRepository.getPortais(jsonObj.getString("portal"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"),jsonObj.getString("link"));
+		}
 		return response.toString();
 	}
 	

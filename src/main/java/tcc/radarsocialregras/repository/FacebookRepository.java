@@ -30,15 +30,15 @@ public class FacebookRepository {
 		
 	}
 	
-	public static AggregationOutput getPortais(){
+	public static String getPortais(String portal,String dataInicial,String dataFinal,String link){
 		
 		
 		FacebookDao dao = new FacebookDao();
-		AggregationOutput portais = dao.buscarTodosPortais();
+		AggregationOutput portais = dao.buscarTodosPortais(portal,dataInicial,dataFinal,link);
 		
 //		String serialize = JSON.serialize(portais);
-//	    System.out.println(serialize);
-		return portais;		
+	    System.out.println(portais.toString());
+		return portais.toString();		
 		
 	}
 	
