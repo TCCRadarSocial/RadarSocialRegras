@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mongodb.AggregationOutput;
+
 import tcc.radarsocialregras.repository.FacebookRepository;
 import tcc.radarsocialregras.repository.TwitterRepository;
 
@@ -21,6 +23,13 @@ public class TwitterController {
 		System.out.println("Carregando o twitter"); 
 //		return "index";
 	}
+	
+	@RequestMapping(value = "/twitterTodosPortais", method = RequestMethod.GET,produces = "application/json")
+    public @ResponseBody String twitterPortais(){ 
+        
+        AggregationOutput response = TwitterRepository.getTodosPortais();
+        return response.toString();
+    }
 	
 	@RequestMapping(value = "/twitterPortais", method = RequestMethod.POST,produces = "application/json")
 	public @ResponseBody String facebookPortais(@RequestBody String body){ 
