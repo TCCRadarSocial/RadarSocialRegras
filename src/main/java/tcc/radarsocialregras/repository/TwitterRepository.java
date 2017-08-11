@@ -18,6 +18,19 @@ import tcc.radarsocial.model.PostFacebook;
 import tcc.radarsocialregras.util.Util;
 
 public class TwitterRepository {
+	
+	
+	 public static AggregationOutput getTodosPortais(){
+	        
+	        
+	        TwitterDao dao = new TwitterDao();
+	        AggregationOutput portais = dao.buscarTodosPortaisSemFiltro();
+	        
+//	        String serialize = JSON.serialize(portais);
+//	        System.out.println(serialize);
+	        return portais;        
+	        
+	    }
 
 	public static String getPortais(String portal,String dataInicial,String dataFinal,String link){
 		

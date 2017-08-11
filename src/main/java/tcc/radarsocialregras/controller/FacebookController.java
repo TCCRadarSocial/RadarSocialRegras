@@ -39,6 +39,15 @@ public class FacebookController {
 		return response.toString();
 	}
 	
+	
+    @RequestMapping(value = "/facebookTodosPortais", method = RequestMethod.GET,produces = "application/json")
+    public @ResponseBody String facebookPortais(){ 
+        
+        AggregationOutput response = FacebookRepository.getTodosPortais();
+        return response.toString();
+    }
+
+	
 	@RequestMapping(value = "/facebookSearch", method = RequestMethod.POST,produces = "application/json")
 	public @ResponseBody String buscaPorFiltros(@RequestBody String body) throws JSONException, ParseException{ 
 		
