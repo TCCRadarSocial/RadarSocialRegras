@@ -38,4 +38,17 @@ public class FeedController {
 		return response.toString();
 	}
 	
+	@RequestMapping(value = "/feedSearchPublicacao", method = RequestMethod.POST,produces = "application/json")
+	public @ResponseBody String buscaPorFiltrosLink(@RequestBody String body) throws JSONException, ParseException{ 
+		
+		JSONArray array = new JSONArray(body); 
+		String response = null;
+		for(int i=0; i<array.length(); i++){
+		    JSONObject jsonObj = array.getJSONObject(i);
+		    response = FeedRepository.buscaPorFiltroLink(jsonObj.getString("link"));
+		}
+		
+		return response.toString();
+	}
+	
 }

@@ -20,4 +20,16 @@ public static String buscaPorFiltro(String redeSocial,String portal,String dataI
 		return serialize;
 		
 	}
+
+public static String buscaPorFiltroLink(String link) throws ParseException{
+	
+	
+	FeedsDao dao = new FeedsDao();		
+	DBCursor cursor = dao.buscaPorFiltroPorLink(link);
+
+    String serialize = JSON.serialize(cursor);
+    System.out.println(serialize);
+	return serialize;
+	
+}
 }
