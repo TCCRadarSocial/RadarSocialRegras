@@ -1,5 +1,8 @@
 package tcc.radarsocialregras.repository;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+import java.nio.charset.Charset;
 import java.text.ParseException;
 
 import com.mongodb.DBCursor;

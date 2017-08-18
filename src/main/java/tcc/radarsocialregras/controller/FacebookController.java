@@ -20,14 +20,14 @@ import tcc.radarsocialregras.repository.FacebookRepository;
 @Controller
 public class FacebookController {
 
-	@RequestMapping(value = "/facebook", method = RequestMethod.GET,produces = "application/json")
+	@RequestMapping(value = "/facebook", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String facebook(){ 
 		
 		String response = FacebookRepository.getAll();
 		return response;
 	}
 	
-	@RequestMapping(value = "/facebookPortais", method = RequestMethod.POST,produces = "application/json")
+	@RequestMapping(value = "/facebookPortais", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String facebookPortais(@RequestBody String body){ 
 		
 		JSONArray array = new JSONArray(body); 
@@ -40,7 +40,7 @@ public class FacebookController {
 	}
 	
 	
-    @RequestMapping(value = "/facebookTodosPortais", method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/facebookTodosPortais", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String facebookPortais(){ 
         
         AggregationOutput response = FacebookRepository.getTodosPortais();
@@ -48,7 +48,7 @@ public class FacebookController {
     }
 
 	
-	@RequestMapping(value = "/facebookSearch", method = RequestMethod.POST,produces = "application/json")
+	@RequestMapping(value = "/facebookSearch", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String buscaPorFiltros(@RequestBody String body) throws JSONException, ParseException{ 
 		
 //		String[] portal = body.split(":");

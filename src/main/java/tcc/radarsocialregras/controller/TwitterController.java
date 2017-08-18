@@ -24,14 +24,14 @@ public class TwitterController {
 //		return "index";
 	}
 	
-	@RequestMapping(value = "/twitterTodosPortais", method = RequestMethod.GET,produces = "application/json")
+	@RequestMapping(value = "/twitterTodosPortais", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public @ResponseBody String twitterPortais(){ 
         
         AggregationOutput response = TwitterRepository.getTodosPortais();
         return response.toString();
     }
 	
-	@RequestMapping(value = "/twitterPortais", method = RequestMethod.POST,produces = "application/json")
+	@RequestMapping(value = "/twitterPortais", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String facebookPortais(@RequestBody String body){ 
 		
 		JSONArray array = new JSONArray(body); 
@@ -43,7 +43,7 @@ public class TwitterController {
 		return response.toString();
 	}
 	
-	@RequestMapping(value = "/twitterSearch", method = RequestMethod.POST,produces = "application/json")
+	@RequestMapping(value = "/twitterSearch", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String buscaPorFiltros(@RequestBody String body) throws JSONException, ParseException{ 
 		
 //		String[] portal = body.split(":");

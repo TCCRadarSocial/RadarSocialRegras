@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tcc.radarsocialregras.repository.FacebookRepository;
 import tcc.radarsocialregras.repository.FeedRepository;
+import static java.nio.charset.StandardCharsets.*;
 
 @Controller
 public class FeedController {
@@ -23,7 +24,7 @@ public class FeedController {
 //		return "index";
 	}
 	
-	@RequestMapping(value = "/feedSearch", method = RequestMethod.POST,produces = "application/json")
+	@RequestMapping(value = "/feedSearch", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String buscaPorFiltros(@RequestBody String body) throws JSONException, ParseException{ 
 		
 //		String[] portal = body.split(":");
@@ -38,7 +39,7 @@ public class FeedController {
 		return response.toString();
 	}
 	
-	@RequestMapping(value = "/feedSearchPublicacao", method = RequestMethod.POST,produces = "application/json")
+	@RequestMapping(value = "/feedSearchPublicacao", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String buscaPorFiltrosLink(@RequestBody String body) throws JSONException, ParseException{ 
 		
 		JSONArray array = new JSONArray(body); 
@@ -47,7 +48,7 @@ public class FeedController {
 		    JSONObject jsonObj = array.getJSONObject(i);
 		    response = FeedRepository.buscaPorFiltroLink(jsonObj.getString("link"));
 		}
-		
+	
 		return response.toString();
 	}
 	
