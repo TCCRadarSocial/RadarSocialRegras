@@ -107,6 +107,28 @@
 		  <artifactId>spring-security-core</artifactId>
 		  <version>4.0.2.RELEASE</version> 
 	  </dependency> 
+	  <!-- hibernate -->
+	  <dependency> 
+		  <groupId>org.hibernate</groupId> 
+		  <artifactId>hibernate-entitymanager</artifactId> 
+		  <version>4.3.0.Final</version> 
+	  </dependency>
+	  <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> <version>4.3.0.Final</version> </dependency>
+	<dependency> 
+		<groupId>org.hibernate.javax.persistence</groupId> 
+		<artifactId>hibernate-jpa-2.1-api</artifactId> 
+		<version>1.0.0.Final</version> 
+	</dependency>
+		<dependency> 
+		<groupId>org.springframework</groupId> 
+		<artifactId>spring-orm</artifactId>
+		<version>4.2.0.RELEASE</version> 
+	</dependency>
+	<dependency> 
+		<groupId>mysql</groupId> 
+		<artifactId>mysql-connector-java</artifactId> 
+		<version>5.1.15</version> 
+	</dependency> 
   </dependencies>
   <repositories> 
 	  <repository> 

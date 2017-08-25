@@ -2,6 +2,9 @@ package tcc.radarsocialregras.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,41 +22,21 @@ import com.mongodb.util.JSON;
 import tcc.radarsocial.db.ConnectionFactory;
 import tcc.radarsocialregras.model.User;
 
-@Repository
+@Repository 
 public class UserDao implements UserDetailsService{
 	
-	DBCollection collection = ConnectionFactory.connectDB().getCollection("LoginUsuario");
-	
-	@Override public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				
-		List<User> users = buscaUsuarioPorNome(username);
-		
-		return (UserDetails) users.get(0);
-	}
-	
-	public List<User> buscaUsuarioPorNome(String username){
-BasicDBList and = new BasicDBList();
+	@PersistenceContext 
+	private EntityManager em;
 
-		List<User> user = null;
+	@Override 
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
+		String jpql = "select u from User u where u.login = :login";
+		List<User> users = em.createQuery(jpql,User.class).setParameter("login", username).getResultList();
 		
-		DBObject clauseLink = new BasicDBObject("name", username); 
-		and.add(clauseLink);
-			
-		DBObject query = new BasicDBObject("$and", and);
-		
-		DBCursor cursor = collection.find(query);
-		String serialize = JSON.serialize(cursor);
-		
-		JSONArray array = new JSONArray(serialize); 
-		for(int i=0; i<array.length(); i++){
-		    JSONObject jsonObj = array.getJSONObject(i);
-		    User u = new User();
-		    u.setName(jsonObj.get("name").toString());
-		    user.add(u);
-		}
-		
-		return user;
-		
+		if(users.isEmpty()){ 
+			throw new UsernameNotFoundException ("O usuario "+username+" não existe"); 
+			} 
+		return users.get(0);
 	}
 
 }
