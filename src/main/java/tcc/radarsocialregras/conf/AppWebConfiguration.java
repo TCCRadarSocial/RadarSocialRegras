@@ -2,15 +2,16 @@ package tcc.radarsocialregras.conf;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import tcc.radarsocialregras.controller.FeedController;
 
+@Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "tcc.radarsocialregras.controller" })
+@ComponentScan(basePackages = { "tcc.radarsocialregras" })
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean

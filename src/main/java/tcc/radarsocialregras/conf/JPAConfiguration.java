@@ -9,7 +9,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@EnableTransactionManagement
 public class JPAConfiguration {
 
 	@Bean 
@@ -27,8 +29,8 @@ public class JPAConfiguration {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource(); 
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver"); 
 		dataSource.setUrl( "jdbc:mysql://localhost:3306/radarsocial"); 
-		dataSource.setUsername("admin_radar"); 
-		dataSource.setPassword("123@qwe"); 
+		dataSource.setUsername("root"); 
+		dataSource.setPassword(""); 
 		
 		return dataSource; 
 	}
