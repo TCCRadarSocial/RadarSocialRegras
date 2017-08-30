@@ -32,11 +32,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	    .and().formLogin().loginPage("/login").permitAll()
 	    .and().httpBasic()
 	    .and()
-	    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")); 
+	    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	    .and() 
+	    .exceptionHandling() 
+	    .accessDeniedPage("/WEB-INF/views/error.jsp"); 
 		
 		http.csrf().disable();
 
 	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	    web
+	       .ignoring()
+	       .antMatchers("/resources/**", "/css/**", "/js/**");
+	}
+	
 	@Autowired
 	private UserDetailsService users;
 	

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AppController {
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String index(){
 		
 //		User user = Util.getUsuarioLogado();
@@ -28,7 +28,7 @@ public class AppController {
 //		}
 //			
 //		return null;
-		return "index";
+		return "home";
 	}
 	
 	@RequestMapping("/login")
