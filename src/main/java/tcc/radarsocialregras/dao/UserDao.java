@@ -23,11 +23,11 @@ import tcc.radarsocial.db.ConnectionFactory;
 import tcc.radarsocialregras.model.User;
 
 @Repository 
-public class UserDao implements UserDetailsService{
+public class UserDao implements UserDetailsService {
 	
 	@PersistenceContext 
-	private EntityManager em;
-
+	public EntityManager em;
+		
 	@Override 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
 		String jpql = "select u from User u where u.login = :login";
@@ -38,5 +38,9 @@ public class UserDao implements UserDetailsService{
 			} 
 		return users.get(0);
 	}
-
+	
+	public void insertUser(User user){
+		this.em.merge(user);
+		
+	}
 }

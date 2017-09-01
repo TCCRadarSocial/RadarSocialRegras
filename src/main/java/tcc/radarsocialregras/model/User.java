@@ -17,6 +17,7 @@ public class User implements UserDetails{
 		
 	@Id 
 	private String login; 
+	
 	private String password; 
 	private String name; 
 	
@@ -54,4 +55,16 @@ public class User implements UserDetails{
 		return true; 
 		}
 
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 }
