@@ -1,6 +1,7 @@
 <%@include file="/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div ng-app="myApp" ng-controller="AppCtrl">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -19,7 +20,7 @@
   </div>
 </nav>
 
-<div id="myModal" class="modal fade" role="dialog">
+<div id="modalUser" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -44,6 +45,7 @@
 		  <input type="password" class="form-control" id="senha" name="senha">
 		</div>
 		<button type="submit" class="btn btn-primary">Salvar</button>
+		{{mensagem}}
       </form>
       </div>
       <div class="modal-footer">

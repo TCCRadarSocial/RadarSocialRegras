@@ -28,12 +28,12 @@ myApp.directive("metricsFeeds", function() {
 myApp.controller('AppCtrl', [ '$scope', function($scope) {
 
 	$scope.selectedTab = 'feed';
-	
-	$scope.modalUser = function(){
-		$('#myModal').modal();
+
+	$scope.modalUser = function() {
+		$('#modalUser').modal();
 	}
-	
-	$scope.modalRede = function(){
+
+	$scope.modalRede = function() {
 		$('#modalRede').modal();
 	}
 } ]);
