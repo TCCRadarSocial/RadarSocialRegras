@@ -51,4 +51,8 @@ public class UserDao implements UserDetailsService {
 		em.merge(user); 
 		}
 
+	public List<User> list() { 
+		return em.createQuery("select u from User u",User.class)
+				.getResultList(); 
+	}
 }

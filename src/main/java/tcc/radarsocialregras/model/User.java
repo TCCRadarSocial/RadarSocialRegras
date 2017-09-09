@@ -26,6 +26,9 @@ public class User implements UserDetails{
 	private String password; 
 	private String name; 
 	
+	public String getName() {
+		return name;
+	}
 	@ManyToMany(fetch = FetchType.EAGER) 
 	private List<Role> roles = new ArrayList<>();
 	

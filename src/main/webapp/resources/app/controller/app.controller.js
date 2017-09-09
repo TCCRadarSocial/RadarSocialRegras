@@ -25,15 +25,50 @@ myApp.directive("metricsFeeds", function() {
 	};
 });
 
-myApp.controller('AppCtrl', [ '$scope', function($scope) {
+myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
+		function($scope, $q, $http) {
 
-	$scope.selectedTab = 'feed';
+			$scope.selectedTab = 'feed';
 
-	$scope.modalUser = function() {
-		$('#modalUser').modal();
-	}
+			// $scope.modalUser = function() {
+			// $('#modalUser').modal();
+			// carregaUsuarios();
+			// }
 
-	$scope.modalRede = function() {
-		$('#modalRede').modal();
-	}
-} ]);
+			$scope.modalRede = function() {
+				$('#modalRede').modal();
+			}
+
+			$scope.modalExclusao = function(username) {
+				$('#modalExclusao').modal();
+				$scope.login = username;
+			}
+
+			carregaUsuarios();
+			function carregaUsuarios() {
+
+				var deferred = $q.defer();
+
+				var method = 'POST';
+				var url = '/RadarSocialRegras/listaUsuario';
+				var req = {
+					method : method,
+					url : url
+				}
+
+				$http(req).success(function(data, status, headers, config) {
+					deferred.resolve(data);
+				}).error(deferred.resolve);
+
+				deferred.promise.then(function(data) {
+					$('#tableUser').html($('#tableUser', data).html());
+
+				});
+
+			}
+
+			$scope.confirmaExclusao = function(username) {
+
+			}
+
+		} ]);
