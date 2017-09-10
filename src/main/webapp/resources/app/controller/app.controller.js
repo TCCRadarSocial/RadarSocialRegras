@@ -39,7 +39,7 @@ myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
 				$('#modalRede').modal();
 			}
 
-			$scope.modalExclusao = function(username) {
+			$scope.modalExclusao = function() {
 				$('#modalExclusao').modal();
 				$scope.login = username;
 			}

@@ -98,10 +98,26 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/excluirUsuario/{username}",method = RequestMethod.GET)
-	public String excluirUsuario(@PathVariable("username") String username){
-				
-		System.out.println("entrou no delete");
+	@RequestMapping(value="/excluiUsuario/{username:.+}",method = RequestMethod.GET)
+	public String excluirUsuario(@PathVariable(value="username") String username){
+		
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext( JPAConfiguration.class, UserDao.class);; 
+		UserDao userDao = ctx.getBean(UserDao.class);
+		PlatformTransactionManager txManager = ctx.getBean(PlatformTransactionManager.class); 
+		TransactionStatus transaction = txManager.getTransaction(new DefaultTransactionAttribute());
+		
+		User user = userDao.findLogin(username);
+		userDao.delete(user);
+		try{
+			txManager.commit(transaction); 
+		}
+		catch(Exception erro){
+			
+		}
+		finally{
+			ctx.close();
+		}
+		
 		return "usuarios";
 	}
 	

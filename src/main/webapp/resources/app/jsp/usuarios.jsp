@@ -33,8 +33,11 @@
 						<td>${user.getName()}</td>
 						<td><a href="/RadarSocialRegras/editaUsuario/${user.getUsername()}&${user.getName()}"><i
 								class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-						<td><a href="#" data-toggle="modal"  ng-click="modalExclusao()"><i class="fa fa-times"
+						<td><a href="/RadarSocialRegras/excluiUsuario/${user.getUsername()}"><i class="fa fa-times"
 								aria-hidden="true"></i></a></td>
+								<!--<i class="fa fa-times"
+								aria-hidden="true"> <a href="#" data-toggle="modal" data-target="#modalExclusao" ng-click="modalExclusao()">Excluir</a></button>
+						 -->
 					</tr>
 				</cF:forEach>
 			</table>

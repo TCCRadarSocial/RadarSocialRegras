@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,4 +56,12 @@ public class UserDao implements UserDetailsService {
 		return em.createQuery("select u from User u",User.class)
 				.getResultList(); 
 	}
+	
+	public User findLogin(String username) { 
+		TypedQuery<User> query = em.createQuery("select distinct(u) from User u where u.login like :username",User.class).setParameter("username", username);
+		return query.getSingleResult();
+	}
+	public void delete(User user) { 
+		em.remove(user); 
+		}
 }
