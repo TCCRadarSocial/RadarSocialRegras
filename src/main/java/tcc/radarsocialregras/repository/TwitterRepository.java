@@ -40,7 +40,7 @@ public class TwitterRepository {
 		
 //		String serialize = JSON.serialize(portais);
 	    System.out.println(portais.toString());
-		return portais.toString();		
+		return portais.results().toString();		
 		
 	}
 	

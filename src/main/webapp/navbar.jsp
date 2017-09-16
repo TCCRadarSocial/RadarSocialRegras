@@ -12,7 +12,7 @@
 				<a class="navbar-brand" href="#">Radar Social</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
+				<li class="active"><a href="<c:url value="home"/>">Home</a></li>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li><a href="<c:url value="/usuarios"/>">Usuários</a></li>
 				</sec:authorize>

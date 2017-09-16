@@ -39,7 +39,8 @@
 					  <label><input type="radio" name="option"  ng-model="checkRedeSocial" value="redeTwitter" ng-click="selecionaRede()">Twitter</label>
 					</div>
 				</div>
-				<div class="form-group col-lg-2">
+				<!-- ng-if="portais != 'Todos'" -->
+				<div class="form-group col-lg-2" >
 				  <label for="portais">Portais:</label>
 				  <select class="form-control" id="portais" ng-model="opcaoPortal">
 				    <option ng-repeat="p in portais" ng-if="p != '' && p != []" value="{{p}}">{{p}}</option>

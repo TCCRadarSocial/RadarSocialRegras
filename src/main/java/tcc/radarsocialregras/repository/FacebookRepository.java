@@ -37,7 +37,7 @@ public class FacebookRepository {
         AggregationOutput portais = dao.buscarTodosPortaisSemFiltro();
         
 //        String serialize = JSON.serialize(portais);
-//        System.out.println(serialize);
+        System.out.println(portais.results());
         return portais;        
         
     }
@@ -50,8 +50,8 @@ public class FacebookRepository {
 		AggregationOutput portais = dao.buscarTodosPortais(portal,dataInicial,dataFinal,link);
 		
 //		String serialize = JSON.serialize(portais);
-	    System.out.println(portais.toString());
-		return portais.toString();		
+	    System.out.println(portais.results());
+		return portais.results().toString();		
 		
 	}
 	

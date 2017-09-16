@@ -28,7 +28,7 @@ public class TwitterController {
     public @ResponseBody String twitterPortais(){ 
         
         AggregationOutput response = TwitterRepository.getTodosPortais();
-        return response.toString();
+        return response.results().toString();
     }
 	
 	@RequestMapping(value = "/twitterPortais", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")

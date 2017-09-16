@@ -44,7 +44,8 @@ public class FacebookController {
     public @ResponseBody String facebookPortais(){ 
         
         AggregationOutput response = FacebookRepository.getTodosPortais();
-        return response.toString();
+//        return response.toString();
+        return response.results().toString();
     }
 
 	
