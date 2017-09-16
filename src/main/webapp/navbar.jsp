@@ -16,16 +16,15 @@
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li><a href="<c:url value="/usuarios"/>">Usuários</a></li>
 				</sec:authorize>
-				<li><a href="#" data-toggle="modal" ng-click="modalRede()">Redes
+				<li><a href="<c:url value="/redesSociais"/>">Redes
 						Sociais</a></li>
 				<li><a href="#">Metas</a></li>
 				<li><a href="<c:url value="/logout" />">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
-	<div id="modalRede" class="modal fade" role="dialog">
+	<!-- <div id="modalRede" class="modal fade" role="dialog">
 		<div class="modal-dialog">
-			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -53,7 +52,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	<!-- <div id="modalExclusao" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
