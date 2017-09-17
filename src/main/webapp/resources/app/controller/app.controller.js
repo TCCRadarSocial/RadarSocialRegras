@@ -35,6 +35,8 @@ myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
 			// carregaUsuarios();
 			// }
 
+			$scope.currentPage = 1;
+
 			$scope.modalRede = function() {
 				$('#modalRede').modal();
 			}
@@ -62,6 +64,41 @@ myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
 
 				deferred.promise.then(function(data) {
 					$('#tableUser').html($('#tableUser', data).html());
+
+				});
+
+			}
+
+			carregaRedesSociais();
+			function carregaRedesSociais() {
+				var redes = [];
+				var totalReactions = [];
+				var deferred = $q.defer();
+
+				var method = 'POST';
+				var url = '/RadarSocialRegras/listaRedes';
+				var req = {
+					method : method,
+					url : url
+				}
+
+				$http(req).success(function(data, status, headers, config) {
+					deferred.resolve(data);
+				}).error(deferred.resolve);
+
+				deferred.promise.then(function(data) {
+					console.log(data);
+					data.map(function(rede) {
+						if (rede.nomePagina != null)
+							var nomeRede = rede.nomeTwitter;
+						else
+							var nomeRede = rede.nomePagina;
+
+						$scope.redes.push({
+							nome : nomeRede,
+							tipo : rede.tipo
+						});
+					})
 
 				});
 

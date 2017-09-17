@@ -6,9 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mongodb.AggregationOutput;
+import com.mongodb.util.JSON;
+
+import tcc.radarsocial.dao.FacebookDao;
 import tcc.radarsocial.dao.RedeSocialDao;
+import tcc.radarsocial.dao.TwitterDao;
 import tcc.radarsocial.servico.IntegracaoFacebook;
 import tcc.radarsocial.servico.IntegracaoTwitter;
 import twitter4j.TwitterException;
@@ -65,13 +71,25 @@ public class RedeSocialController {
 		
 	}
 	
-	@RequestMapping(value="/listaRedes", method = RequestMethod.POST, produces = {"application/json" }) 
-	public ModelAndView list(){ 
-		ModelAndView modelAndView = new ModelAndView("usuarios"); 
-		RedeSocialDao dao =  new RedeSocialDao();
-		System.out.println(dao.listar());
-		modelAndView.addObject("redesSociais", dao.listar()); 
-		return modelAndView; 
+	@RequestMapping(value="/listaRedes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8") 
+	public @ResponseBody String list(){ 
+//		ModelAndView modelAndView = new ModelAndView("usuarios"); 
+		TwitterDao daoTwitter =  new TwitterDao();
+		FacebookDao daoFace =  new FacebookDao();
+		
+		AggregationOutput outputTwitter = daoTwitter.buscarTodosPortaisSemFiltro();
+		AggregationOutput outputFace = daoFace.buscarTodosPortaisSemFiltro();
+		System.out.println("twitter"+outputTwitter.results().toString());
+		System.out.println("face"+outputFace.results().toString());
+		
+		
+		String serialize = JSON.serialize(outputTwitter.results().toString().concat(outputFace.results().toString()));
+		
+		return serialize;
+
+//		modelAndView.addObject("twitterPortais", daoTwitter.buscarTodosPortaisSemFiltro()); 
+//		modelAndView.addObject("facebookPortais", daoFace.buscarTodosPortaisSemFiltro()); 
+//		return modelAndView; 
 	}
 
 }
