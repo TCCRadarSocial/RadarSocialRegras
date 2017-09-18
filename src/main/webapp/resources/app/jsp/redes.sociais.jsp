@@ -12,10 +12,11 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="usr">Nome:</label> <input type="text"
+				<label for="usr">Nome: *</label> <input type="text"
 					class="form-control" id="nome" name="nome">
 			</div>
 			<button type="submit" class="btn btn-primary">Salvar</button>
+			<span style="color:red;" id="msg">${mensagem}</span>
 		</form>
 		<div class="col-md-12" style="padding-top: 20px;">
 			<table id="tableRedes" class="table table-hover table-condensed">

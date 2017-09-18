@@ -46,7 +46,7 @@ public class RedeSocialController {
 		
 		if(tipo.equals("facebook")){
 			IntegracaoFacebook login = new IntegracaoFacebook("1818125321786434", "874b37094b726ca18b0bc7684cf4c757");
-			if(login.hasPage(nome)){
+			if(login.hasPage(nome) && !nome.equals("")){
 				Thread t = new Thread(new Runnable() {
 				    public void run() {
 				        try {
@@ -59,20 +59,20 @@ public class RedeSocialController {
 
 				t.start();
 
-				model.addObject("mensagem", "Facebook adicionado.");
+//				model.addObject("mensagem", "Facebook adicionado.");
 			}else{				
-				model.addObject("mensagem", "Página facebook não existe ou verifique sua conexão.");
+				model.addObject("mensagem", "Preencha todos os campos corretamente ou verifique sua conexão.");
 			}
 			
 		}else if(tipo.equals("twitter")){
 			IntegracaoTwitter intTwitter = new IntegracaoTwitter();
-			if(intTwitter.hasTwitter(intTwitter.autenticar(),nome)){
+			if(intTwitter.hasTwitter(intTwitter.autenticar(),nome) && !nome.equals("")){
 				System.out.println("twitter existe");
 				intTwitter.buscarDadosTwitter(intTwitter.autenticar(), nome);
 			}
 			else{
-				System.out.println("twitter nao existe");
-				model.addObject("mensagem", "Página facebook não existe ou verifique sua conexão.");
+//				System.out.println("twitter nao existe");
+				model.addObject("mensagem", "Preencha todos os campos corretamente ou verifique sua conexão.");
 			}
 		}
 		
