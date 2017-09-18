@@ -2,7 +2,12 @@ package tcc.radarsocialregras.controller;
 
 import java.text.ParseException;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,10 +18,14 @@ import com.mongodb.AggregationOutput;
 import com.mongodb.util.JSON;
 
 import tcc.radarsocial.dao.FacebookDao;
+import tcc.radarsocial.dao.FeedsDao;
 import tcc.radarsocial.dao.RedeSocialDao;
 import tcc.radarsocial.dao.TwitterDao;
 import tcc.radarsocial.servico.IntegracaoFacebook;
 import tcc.radarsocial.servico.IntegracaoTwitter;
+import tcc.radarsocialregras.conf.JPAConfiguration;
+import tcc.radarsocialregras.dao.UserDao;
+import tcc.radarsocialregras.model.User;
 import twitter4j.TwitterException;
 
 @Controller
@@ -33,7 +42,7 @@ public class RedeSocialController {
 	@RequestMapping("/salvaRedeSocial")
 	public ModelAndView salvaRedeSocial(@RequestParam("nome") String nome,@RequestParam("tipo") String tipo) 
 			throws TwitterException{
-		ModelAndView model = new ModelAndView("home");
+		ModelAndView model = new ModelAndView("redes.sociais");
 		
 		if(tipo.equals("facebook")){
 			IntegracaoFacebook login = new IntegracaoFacebook("1818125321786434", "874b37094b726ca18b0bc7684cf4c757");
@@ -79,17 +88,36 @@ public class RedeSocialController {
 		
 		AggregationOutput outputTwitter = daoTwitter.buscarTodosPortaisSemFiltro();
 		AggregationOutput outputFace = daoFace.buscarTodosPortaisSemFiltro();
-		System.out.println("twitter"+outputTwitter.results().toString());
-		System.out.println("face"+outputFace.results().toString());
 		
 		
-		String serialize = JSON.serialize(outputTwitter.results().toString().concat(outputFace.results().toString()));
+		String jsonTwitter =  outputTwitter.results().toString().replaceAll("\\[+\\]+","");
+		String jsonFace = outputFace.results().toString().replaceAll("\\[+\\]+","");
+				
+		String serialize = "[" + jsonTwitter + ", " + jsonFace + "]";
 		
 		return serialize;
 
-//		modelAndView.addObject("twitterPortais", daoTwitter.buscarTodosPortaisSemFiltro()); 
-//		modelAndView.addObject("facebookPortais", daoFace.buscarTodosPortaisSemFiltro()); 
-//		return modelAndView; 
+	}
+	
+	@RequestMapping(value="/excluiRede/{nome}&{tipo}",method = RequestMethod.GET)
+	public String excluirRedeSocial(@PathVariable(value="nome") String nome,@PathVariable(value="tipo") String tipo){
+		
+		TwitterDao daoTwitter =  new TwitterDao();
+		FacebookDao daoFace =  new FacebookDao();
+		FeedsDao daoFeeds =  new FeedsDao();
+		
+		if(tipo.equals("facebook") && !nome.equals("")){
+			
+			daoFace.excluirRegistros(nome);
+			daoFeeds.excluirRegistros(nome,tipo);
+			
+		}else if(tipo.equals("twitter") && !nome.equals("")){
+			
+			daoTwitter.excluirRegistros(nome);
+			daoFeeds.excluirRegistros(nome,tipo);
+		}
+		
+		return "redes.sociais";
 	}
 
 }

@@ -34,6 +34,9 @@
 					current-page="currentPage">
 					<td>{{ rede.nome }}</td>
 					<td>{{ rede.tipo}}</td>
+					<td><a href="/RadarSocialRegras/excluiRede/{{rede.nome}}&{{rede.tipo}}"><i class="fa fa-times"
+								aria-hidden="true"></i></a></td>
+								
 				</tr>
 			</tbody>
 		</table>

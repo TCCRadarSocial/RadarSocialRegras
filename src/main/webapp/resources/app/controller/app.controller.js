@@ -71,7 +71,7 @@ myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
 
 			carregaRedesSociais();
 			function carregaRedesSociais() {
-				var redes = [];
+				$scope.redes = [];
 				var totalReactions = [];
 				var deferred = $q.defer();
 
@@ -89,15 +89,14 @@ myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
 				deferred.promise.then(function(data) {
 					console.log(data);
 					data.map(function(rede) {
-						if (rede.nomePagina != null)
-							var nomeRede = rede.nomeTwitter;
-						else
-							var nomeRede = rede.nomePagina;
 
-						$scope.redes.push({
-							nome : nomeRede,
-							tipo : rede.tipo
+						angular.forEach(rede, function(value, key) {
+							$scope.redes.push({
+								nome : value._id,
+								tipo : value.tipo
+							});
 						});
+
 					})
 
 				});
