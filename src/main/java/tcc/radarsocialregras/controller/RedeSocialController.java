@@ -56,7 +56,7 @@ public class RedeSocialController {
 				        }
 				    }
 				});
-
+				
 				t.start();
 
 //				model.addObject("mensagem", "Facebook adicionado.");
@@ -92,8 +92,15 @@ public class RedeSocialController {
 		
 		String jsonTwitter =  outputTwitter.results().toString().replaceAll("\\[+\\]+","");
 		String jsonFace = outputFace.results().toString().replaceAll("\\[+\\]+","");
-				
-		String serialize = "[" + jsonTwitter + ", " + jsonFace + "]";
+		
+		String serialize = null;
+		
+		if(jsonFace.equals(""))
+			serialize = jsonTwitter;
+		else if(jsonTwitter.equals(""))
+			serialize = jsonFace;
+		else
+			serialize = "[" + jsonTwitter + ", " + jsonFace + "]";
 		
 		return serialize;
 
