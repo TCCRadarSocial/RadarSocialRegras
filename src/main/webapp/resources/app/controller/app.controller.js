@@ -90,21 +90,22 @@ myApp.controller('AppCtrl', [ '$scope', '$q', '$http',
 					console.log(data);
 					data.map(function(rede) {
 
-						if (data.length > 1) {
+						if (rede[0] == undefined) {
+							$scope.redes.push({
+								nome : rede._id,
+								tipo : rede.tipo
+							});
+						} else {
 							angular.forEach(rede, function(value, key) {
 								$scope.redes.push({
 									nome : value._id,
 									tipo : value.tipo
 								});
 							});
-						} else {
-							$scope.redes.push({
-								nome : rede._id,
-								tipo : rede.tipo
-							});
 						}
 
-					})
+						// }
+					});
 
 				});
 
