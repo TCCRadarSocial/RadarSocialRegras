@@ -229,33 +229,40 @@ angular
 									deferred.resolve(data);
 								}).error(deferred.resolve);
 
-						deferred.promise.then(function(data) {
+						deferred.promise
+								.then(function(data) {
 
-							data.map(function(metric) {
+									data
+											.map(function(metric) {
 
-								retweets.push({
-									x : moment(metric.dataGravacao.$date)
-											.unix(),
-									y : metric.retweets
-								}), favorites.push({
-									x : moment(metric.dataGravacao.$date)
-											.unix(),
-									y : metric.favorites
-								})
+														retweets
+																.push({
+																	x : moment(
+																			metric.dataCriacao.$date)
+																			.unix(),
+																	y : metric.retweets
+																}),
+														favorites
+																.push({
+																	x : moment(
+																			metric.dataCriacao.$date)
+																			.unix(),
+																	y : metric.favorites
+																})
 
-							})
+											})
 
-							$scope.data = [ {
-								values : retweets,
-								key : 'Retweets',
-								color : '#7777ff',
-								area : false
-							}, {
-								values : favorites,
-								key : 'Favorites',
-								color : '#2ca02c'
-							} ];
-						});
+									$scope.data = [ {
+										values : retweets,
+										key : 'Retweets',
+										color : '#7777ff',
+										area : false
+									}, {
+										values : favorites,
+										key : 'Favorites',
+										color : '#2ca02c'
+									} ];
+								});
 
 					}
 

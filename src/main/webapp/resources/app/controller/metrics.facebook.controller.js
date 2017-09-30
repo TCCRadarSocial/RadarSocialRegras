@@ -227,50 +227,62 @@ angular
 									deferred.resolve(data);
 								}).error(deferred.resolve);
 
-						deferred.promise.then(function(data) {
+						deferred.promise
+								.then(function(data) {
 
-							data.map(function(metric) {
+									data
+											.map(function(metric) {
 
-								comments.push({
-									x : moment(metric.dataGravacao.$date)
-											.unix(),
-									y : metric.comments
-								}), likes.push({
-									x : moment(metric.dataGravacao.$date)
-											.unix(),
-									y : metric.likes
-								}), shares.push({
-									x : moment(metric.dataGravacao.$date)
-											.unix(),
-									y : metric.shares
+														comments
+																.push({
+																	x : moment(
+																			metric.dataCriacao.$date)
+																			.unix(),
+																	y : metric.comments
+																}),
+														likes
+																.push({
+																	x : moment(
+																			metric.dataCriacao.$date)
+																			.unix(),
+																	y : metric.likes
+																}),
+														shares
+																.push({
+																	x : moment(
+																			metric.dataCriacao.$date)
+																			.unix(),
+																	y : metric.shares
+																});
+												reactions
+														.push({
+															x : moment(
+																	metric.dataCriacao.$date)
+																	.unix(),
+															y : metric.reactions
+														});
+
+											})
+
+									$scope.data = [ {
+										values : comments,
+										key : 'Comentários',
+										color : '#7777ff',
+										area : false
+									}, {
+										values : likes,
+										key : 'Curtidas',
+										color : '#2ca02c'
+									}, {
+										values : shares,
+										key : 'Compartilhados',
+										color : '#ff00bf'
+									}, {
+										values : reactions,
+										key : 'Reações',
+										color : '#ff0000'
+									} ];
 								});
-								reactions.push({
-									x : moment(metric.dataGravacao.$date)
-											.unix(),
-									y : metric.reactions
-								});
-
-							})
-
-							$scope.data = [ {
-								values : comments,
-								key : 'Comentários',
-								color : '#7777ff',
-								area : false
-							}, {
-								values : likes,
-								key : 'Curtidas',
-								color : '#2ca02c'
-							}, {
-								values : shares,
-								key : 'Compartilhados',
-								color : '#ff00bf'
-							}, {
-								values : reactions,
-								key : 'Reações',
-								color : '#ff0000'
-							} ];
-						});
 
 					}
 
