@@ -443,7 +443,7 @@ angular
 							var dado = {};
 
 							dado['URL'] = item['link'];
-							dado['Twitter'] = item['nomeTwitter'];
+							dado['Portal'] = item['nomeTwitter'];
 							dado['Data Criação'] = item['dataCriacao'];
 							dado['Tweet'] = item['texto'];
 							dado['Retweets'] = item['retweets'];

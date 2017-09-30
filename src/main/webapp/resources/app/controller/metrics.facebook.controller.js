@@ -466,7 +466,7 @@ angular
 
 							dado['URL'] = item['link'];
 							dado['Mensagem'] = item['mensagem'];
-							dado['Página'] = item['nomePagina'];
+							dado['Portal'] = item['nomePagina'];
 							dado['Data Criação'] = item['dataCriacao'];
 							dado['Comentários'] = item['comments'];
 							dado['Curtidas'] = item['likes'];
@@ -477,7 +477,7 @@ angular
 							dados.push(dado);
 						})
 						alasql(
-								'SELECT * INTO XLSX("relatorio.xlsx",{headers:true}) FROM ? ORDER BY Curtidas DESC',
+								'SELECT * INTO XLSX("relatorio_facebook.xlsx",{headers:true}) FROM ? ORDER BY Curtidas DESC',
 								[ dados ]);
 
 					};
@@ -488,7 +488,7 @@ angular
 							var dado = {};
 
 							// dado['URL'] = item['link'];
-							dado['Página'] = item['nomePagina'];
+							dado['Portal'] = item['nomePagina'];
 							dado['Data Criação'] = item['dataCriacao'];
 							dado['Comentários'] = item['comments'];
 							dado['Curtidas'] = item['likes'];

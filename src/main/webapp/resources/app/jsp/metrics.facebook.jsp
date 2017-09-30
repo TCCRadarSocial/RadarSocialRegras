@@ -75,12 +75,9 @@
 							ng-click="exportarExcel()" ng-show="metricas.length > 0">
 							<span class="fa fa-file-excel-o"></span>
 						</button>
-						<button type="button" class="btn btn-default"
-							ng-click="exportarPdf()" ng-show="metricas.length > 0">
-							<span class="fa fa-file-pdf-o"></span>
-						</button> <a href="" ng-click="sortBy('mensagem')"> Mensagem <span
+						 <a href="" ng-click="sortBy('mensagem')"> Mensagem <span
 							ng-show="sortType == 'groupBy'" class="fa fa-caret-down"></span></a></th>
-					<th><a href="" ng-click="sortBy('nomePagina')"> Página <span
+					<th><a href="" ng-click="sortBy('nomePagina')"> Portal <span
 							ng-show="sortType == 'nomePagina'" class="fa fa-caret-down"></span>
 					</a></th>
 					<th><a href="" ng-click="sortBy('dataCriacao')" title="Data Criação">

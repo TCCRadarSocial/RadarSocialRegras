@@ -74,12 +74,9 @@
 							ng-click="exportarExcel()" ng-show="metricas.length > 0">
 							<span class="fa fa-file-excel-o"></span>
 						</button>
-						<button type="button" class="btn btn-default"
-							ng-click="exportarPdf()" ng-show="metricas.length > 0">
-							<span class="fa fa-file-pdf-o"></span>
-						</button> <a href="" ng-click="sortBy('groupBy')"> URL <span
+						 <a href="" ng-click="sortBy('groupBy')"> URL <span
 							ng-show="sortType == 'groupBy'" class="fa fa-caret-down"></span></a></th>
-					<th><a href="" ng-click="sortBy('nomeTwitter')"> Twitter <span
+					<th><a href="" ng-click="sortBy('nomeTwitter')"> Portal <span
 							ng-show="sortType == 'nomeTwitter'" class="fa fa-caret-down"></span>
 					</a></th>
 					<th><a href="" ng-click="sortBy('texto')"> Tweet
