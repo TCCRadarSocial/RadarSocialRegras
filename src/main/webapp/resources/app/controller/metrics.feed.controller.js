@@ -361,9 +361,16 @@ angular
 											.unix(),
 									y : metric.reactions
 								});
+								$scope.like = metric.reactionLike;
+								$scope.love = metric.reactionLove;
+								$scope.haha = metric.reactionHaha;
+								$scope.wow = metric.reactionWow;
+								$scope.sad = metric.reactionSad;
+								$scope.angry = metric.reactionAngry;
 								$scope.mensagem = metric.mensagem;
 								$scope.link = metric.link;
 								$scope.imagem = metric.imagem;
+								$scope.tipoRedeGrafico = metric.tipoRede;
 
 							})
 
@@ -390,6 +397,8 @@ angular
 					}
 
 					function carregaGraficoLinhaTwitter() {
+
+						$scope.tipoRedeGrafico = "";
 
 						var retweets = [], favorites = [], link = [],
 						// texto = [],

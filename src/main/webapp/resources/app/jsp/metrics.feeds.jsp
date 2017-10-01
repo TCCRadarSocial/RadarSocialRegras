@@ -138,7 +138,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h5 class="modal-title">
         
-        <img src="{{imagem}}" width="100px"/>
+        <img src="{{imagem}}" width="100px" style="float: left;margin-right: 10px;"/>
         <a href="{{link}}" target="_blank">{{mensagem}}</a>
         
         
@@ -146,6 +146,55 @@
       </div>
       <div class="modal-body">
 		<nvd3 options='options' data='data' api="api"></nvd3>
+		<div class="col-lg-12" ng-if="tipoRedeGrafico == 'facebook'">
+		<br><br><br>
+			<div class="col-lg-8">
+			<table>
+				<tr>	
+					<td>
+						<img src="<c:url value="/resources/images/like.png"/>" title="curti"/>
+					</td>
+					<td>
+						<img src="<c:url value="/resources/images/love.png"/>" title="amei"/>
+					</td>
+					<td>
+						<img src="<c:url value="/resources/images/haha.png"/>" title="haha"/>
+					</td>
+					<td>
+						<img src="<c:url value="/resources/images/wow.png"/>" title="wow"/>
+					</td>
+					<td>
+						<img src="<c:url value="/resources/images/sad.png"/>" title="triste"/>
+					</td>
+					<td>
+						<img src="<c:url value="/resources/images/angry.png"/>" title="com raiva"/>
+					</td>
+					
+				</tr>
+				<tr style="text-align: center;">	
+					<td>
+					{{like}}
+					</td>
+					<td>
+					{{love}}
+					</td>
+					<td>
+					{{haha}}
+					</td>
+					<td>
+					{{wow}}
+					</td>
+					<td>
+					{{sad}}
+					</td>
+					<td>
+					{{angry}}
+					</td>
+				</tr>
+			</table>
+			</div>
+		<br><br><br>	
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
