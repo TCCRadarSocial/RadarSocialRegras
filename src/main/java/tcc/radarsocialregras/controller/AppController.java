@@ -1,5 +1,9 @@
 package tcc.radarsocialregras.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,8 +41,12 @@ public class AppController {
 	}
 	
 	@RequestMapping("/logout")
-	public String logout(){
-		
-		return "login";
+	public void logout(HttpServletResponse response){
+		try {
+			response.sendRedirect("/login");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		return "login";
 	}
 }

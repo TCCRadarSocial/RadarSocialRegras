@@ -263,7 +263,6 @@ angular
 									favorites : metric.favorites,
 									retweets : metric.retweets,
 									imagem : metric.imagem,
-									texto : metric.texto,
 									mensagem : metric.mensagem,
 									dataCriacao : data
 								});
@@ -434,7 +433,7 @@ angular
 											.unix(),
 									y : metric.favorites
 								})
-								$scope.mensagem = metric.texto;
+								$scope.mensagem = metric.mensagem;
 								$scope.link = metric.link;
 								$scope.imagem = metric.imagem;
 

@@ -318,7 +318,7 @@ angular
 								$scope.metricas.push({
 									link : metric.link,
 									nomeTwitter : metric.nomeTwitter,
-									texto : metric.texto,
+									texto : metric.mensagem,
 									retweets : metric.retweets,
 									favorites : metric.favorites,
 									dataCriacao : data

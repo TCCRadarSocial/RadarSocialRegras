@@ -18,7 +18,6 @@
 				</sec:authorize>
 				<li><a href="<c:url value="/redesSociais"/>">Redes
 						Sociais</a></li>
-				<li><a href="#">Metas</a></li>
 				<li><a href="<c:url value="/logout" />">Logout</a></li>
 			</ul>
 		</div>

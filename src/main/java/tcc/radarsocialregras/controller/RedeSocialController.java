@@ -58,9 +58,10 @@ public class RedeSocialController {
 				});
 				
 				t.start();
-
+				 new ModelAndView("redirect:/listaRedes");
 //				model.addObject("mensagem", "Facebook adicionado.");
 			}else{				
+				
 				model.addObject("mensagem", "Preencha todos os campos corretamente ou verifique sua conexão.");
 			}
 			

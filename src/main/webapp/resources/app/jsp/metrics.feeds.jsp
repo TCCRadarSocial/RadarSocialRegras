@@ -74,8 +74,10 @@
 				  <label for="portais">Ordenação:</label>
 				  <select class="form-control" id="ordenacao" ng-model="ordenacao">
 				    <option value="dataCriacao">Data criação</option>
+				    <option value="mensagem">Alfabética</option>
 				    <option value="retweets" ng-if="checkRedeSocial == 'redeTwitter'">Retweets</option>
 				    <option value="reactions" ng-if="checkRedeSocial == 'redeFacebook'">Reações</option>
+				    
 				  </select>
 				</div>
 			</div>
@@ -113,9 +115,9 @@
 					<img src="{{metrica.imagem}}" style="width:100%" />
 				</div>
 					<div>
-						<a href="{{metrica.link}}"  target="_blank" title="{{metrica.mensagem}}{{metrica.texto}}">
-							<span class="reticencias" ng-if="metrica.imagem != ''">{{metrica.mensagem | limitTo:25}}{{metrica.texto | limitTo:25}}...</span>
-							<span ng-if="metrica.imagem == ''">{{metrica.mensagem}}{{metrica.texto}}</span>
+						<a href="{{metrica.link}}"  target="_blank" title="{{metrica.mensagem}}">
+							<span class="reticencias" ng-if="metrica.imagem != ''">{{metrica.mensagem | limitTo:25}}...</span>
+							<span ng-if="metrica.imagem == ''">{{metrica.mensagem}}</span>
 						</a>
 					</div>
 					<span ng-if="metrica.nomePagina != null">Página Facebok: {{metrica.nomePagina}}<br></span>
