@@ -44,6 +44,7 @@ angular
 					$scope.checkRedeSocial = "redeAmbos";
 					$scope.ordenacao = "dataCriacao";
 					$scope.rede = undefined;
+					$scope.palavraChave = "";
 					// $scope.portais = [];
 					var url = null;
 
@@ -228,7 +229,9 @@ angular
 								+ '","portal": "' + $scope.portal
 								+ '","dataInicial": "' + $scope.dataInicial
 								+ '","dataFinal": "' + $scope.dataFinal
-								+ '","orderBy": "' + $scope.ordenacao + '"}]';
+								+ '","orderBy": "' + $scope.ordenacao
+								+ '","palavraChave": "' + $scope.palavraChave
+								+ '"}]';
 						var query = JSON.parse(baseQuery);
 						var deferred = $q.defer();
 

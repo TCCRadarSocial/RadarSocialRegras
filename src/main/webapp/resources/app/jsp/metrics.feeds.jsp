@@ -26,7 +26,7 @@
 					<br>
 			</div>
 			<div>
-			<div class="col-lg-10">
+			<div class="col-lg-12">
 				<div class="col-lg-2" >
 				<b>Rede Social:</b>
 					<div class="radio">
@@ -79,6 +79,10 @@
 				    <option value="reactions" ng-if="checkRedeSocial == 'redeFacebook'">Reações</option>
 				    
 				  </select>
+				</div>
+				<div class="col-lg-3">
+					<label for="portais">Busca:</label>
+					<input type='text' class="form-control" id="buscaPalavraChave" placeholder="Digite a palavra-chave" ng-model="palavraChave"/>
 				</div>
 			</div>
 				<div class="col-lg-12" style="text-align:center;margin-top:15px;">

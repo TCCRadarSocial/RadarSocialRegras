@@ -33,7 +33,7 @@ public class FeedController {
 		String response = null;
 		for(int i=0; i<array.length(); i++){
 		    JSONObject jsonObj = array.getJSONObject(i);
-		    response = FeedRepository.buscaPorFiltro(jsonObj.getString("redeSocial"),jsonObj.getString("portal"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"),jsonObj.getString("orderBy"));
+		    response = FeedRepository.buscaPorFiltro(jsonObj.getString("redeSocial"),jsonObj.getString("portal"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"),jsonObj.getString("orderBy"),jsonObj.getString("palavraChave"));
 		}
 		
 		return response.toString();
