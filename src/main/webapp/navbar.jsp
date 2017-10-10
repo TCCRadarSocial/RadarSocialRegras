@@ -18,6 +18,8 @@
 				</sec:authorize>
 				<li><a href="<c:url value="/redesSociais"/>">Redes
 						Sociais</a></li>
+				<li><a href="<c:url value="/comparativo"/>">Comparativo Redes
+						Sociais</a></li>
 				<li><a href="<c:url value="/logout" />">Logout</a></li>
 			</ul>
 		</div>

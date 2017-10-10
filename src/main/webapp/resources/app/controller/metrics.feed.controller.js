@@ -5,6 +5,9 @@ angular
 				'feedController',
 				function($scope, $http, $q, $rootScope) {
 
+					carregaPortaisSomenteFacebook();
+					carregaPortaisSomenteTwitter();
+
 					$scope.modalFace = function(link) {
 						$('#myModal').modal();
 						$scope.link = link;
@@ -320,6 +323,62 @@ angular
 
 					}
 
+					function carregaPortaisSomenteFacebook() {
+						var url = "/RadarSocialRegras/facebookTodosPortais";
+						$scope.facebookPortais = [];
+
+						var deferred = $q.defer();
+
+						var method = 'GET';
+						var req = {
+							method : method,
+							url : url
+						}
+
+						$http(req).success(
+								function(data, status, headers, config) {
+									deferred.resolve(data);
+								}).error(deferred.resolve);
+
+						deferred.promise.then(function(data) {
+
+							// data.result.map(function(metric){
+							data.map(function(metric) {
+								$scope.facebookPortais.push(metric._id);
+							})
+
+						});
+
+					}
+
+					function carregaPortaisSomenteTwitter() {
+						var url = "/RadarSocialRegras/twitterTodosPortais";
+						$scope.twitterPortais = [];
+
+						var deferred = $q.defer();
+
+						var method = 'GET';
+						var req = {
+							method : method,
+							url : url
+						}
+
+						$http(req).success(
+								function(data, status, headers, config) {
+									deferred.resolve(data);
+								}).error(deferred.resolve);
+
+						deferred.promise.then(function(data) {
+
+							// data.result.map(function(metric){
+							data.map(function(metric) {
+								$scope.twitterPortais.push(metric._id);
+							})
+
+						});
+
+					}
+
 					function carregaGraficoLinhaFacebook() {
 
 						var comments = [], likes = [], shares = [], reactions = [], totalMetrics = [];
@@ -401,7 +460,6 @@ angular
 					function carregaGraficoLinhaTwitter() {
 
 						$scope.tipoRedeGrafico = "";
-
 						var retweets = [], favorites = [], link = [],
 						// texto = [],
 						totalMetrics = [];
@@ -524,5 +582,167 @@ angular
 							}
 						}
 					};
+
+					function carregaComparativo() {
+						$scope.tipoRedeGrafico = "";
+
+						var retweets = [], reactions = [];
+
+						var baseQuery = '[{"portalFacebook":"'
+								+ $scope.facebookOpcao + '","portalTwitter":"'
+								+ $scope.twitterOpcao + '",	"dataInicial":"'
+								+ $scope.dataInicial + '",	"dataFinal":"'
+								+ $scope.dataFinal + '"}]';
+						var query = JSON.parse(baseQuery);
+						var deferred = $q.defer();
+
+						var method = 'POST';
+						var url = '/RadarSocialRegras/feedSearchComparativo';
+						var req = {
+							method : method,
+							url : url,
+							data : query
+						}
+
+						$http(req).success(
+								function(data, status, headers, config) {
+									deferred.resolve(data);
+								}).error(deferred.resolve);
+
+						deferred.promise.then(function(data) {
+
+							data.map(function(metric) {
+								angular.forEach(metric, function(value, key) {
+									if (value.sum_retweets != undefined) {
+										retweets.push({
+											x : moment(value._id.$date).unix(),
+											y : value.sum_retweets
+										});
+									}
+									if (value.sum_reactions != undefined) {
+										reactions.push({
+											x : moment(value._id.$date).unix(),
+											y : value.sum_reactions
+										});
+									}
+
+								});
+
+							});
+
+							$scope.data = [ {
+								values : retweets,
+								key : 'Retweets',
+								color : '#7777ff',
+								area : false
+							}, {
+								values : reactions,
+								key : 'Reações',
+								color : '#2ca02c'
+							} ];
+						});
+					}
+
+					$scope.optionsComparativo = {
+						chart : {
+							type : 'lineWithFocusChart',
+							height : 450,
+							margin : {
+								top : 20,
+								right : 60,
+								bottom : 40,
+								left : 70
+							},
+							x : function(d) {
+								return d.x;
+							},
+							y : function(d) {
+								return d.y;
+							},
+							useInteractiveGuideline : true,
+							focusEnable : true,
+							dispatch : {
+								stateChange : function(e) {
+									console.log("stateChange");
+								},
+								changeState : function(e) {
+									console.log("changeState");
+								},
+								tooltipShow : function(e) {
+									console.log("tooltipShow");
+								},
+								tooltipHide : function(e) {
+									console.log("tooltipHide");
+								}
+							},
+							noData : 'Não há dados a serem exibidos',
+							xAxis : {
+								axisLabel : 'Data/Hora',
+								tickFormat : function(d) {
+									return moment.unix(d).format(
+											$scope.dateFormat.format);
+
+								},
+								ticks : 1,
+								axisLabelDistance : 100
+							},
+							yAxis : {
+								tickFormat : function(d) {
+									return d.toLocaleString("pt-br");
+								},
+								axisLabelDistance : 100000
+							},
+							x2Axis : {
+								tickFormat : function(d) {
+									return moment.unix(d).format(
+											$scope.dateFormat.format);
+								},
+								ticks : 1,
+								axisLabelDistance : 100
+							},
+							y2Axis : {},
+							legend : {
+								dispatch : {},
+								width : 500,
+								height : 20,
+								align : true,
+								rightAlign : true
+							}
+						}
+					};
+
+					$scope.buscarComparativo = function() {
+
+						$scope.dataInicial = angular.element(
+								document.querySelector('#dataInicial')).val() != "" ? angular
+								.element(document.querySelector('#dataInicial'))
+								.val()
+								: $scope.inicial;
+						$scope.dataInicial = moment($scope.dataInicial,
+								'DD/MM/YYYY - HH:mm:ss').format(
+								'YYYY-MM-DDTHH:mm:ss')
+								+ '.000Z';
+						$scope.dataFinal = angular.element(
+								document.querySelector('#dataFinal')).val() != "" ? angular
+								.element(document.querySelector('#dataFinal'))
+								.val()
+								: $scope.final;
+						$scope.dataFinal = moment($scope.dataFinal,
+								'DD/MM/YYYY - HH:mm:ss').format(
+								'YYYY-MM-DDTHH:mm:ss')
+								+ '.000Z';
+
+						if ($scope.dataInicial > $scope.dataFinal) {
+							alert("Selecione as datas corretamente");
+						} else {
+
+							if (angular.element(document.querySelector('#portaisTwitter')).val() != ""
+									&& angular.element(document.querySelector('#portaisFace')).val()) {
+								carregaComparativo();
+							} else {
+								alert("Selecione os dois portais para comparar");
+							}
+						}
+					}
 
 				});

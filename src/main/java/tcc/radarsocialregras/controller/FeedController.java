@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mongodb.AggregationOutput;
+
+import tcc.radarsocial.dao.FeedsDao;
 import tcc.radarsocialregras.repository.FacebookRepository;
 import tcc.radarsocialregras.repository.FeedRepository;
 import static java.nio.charset.StandardCharsets.*;
@@ -50,6 +53,20 @@ public class FeedController {
 		}
 	
 		return response.toString();
+	}
+	
+	@RequestMapping(value = "/feedSearchComparativo", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String buscaComparativo(@RequestBody String body) throws JSONException, ParseException{ 
+		
+		JSONArray array = new JSONArray(body); 
+		String response = null;
+		for(int i=0; i<array.length(); i++){
+		    JSONObject jsonObj = array.getJSONObject(i);
+		    response = FeedRepository.buscarComparativoAgregacaoRedes(jsonObj.getString("portalFacebook"),jsonObj.getString("portalTwitter"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"));
+		}
+		
+	
+		return response;
 	}
 	
 }

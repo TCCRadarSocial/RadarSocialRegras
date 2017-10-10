@@ -39,6 +39,13 @@ public class RedeSocialController {
 		
 	}
 	
+	@RequestMapping("/comparativo")
+	public String indexComparativo(){
+				
+		return "comparativo";
+		
+	}
+	
 	@RequestMapping("/salvaRedeSocial")
 	public ModelAndView salvaRedeSocial(@RequestParam("nome") String nome,@RequestParam("tipo") String tipo) 
 			throws TwitterException{
