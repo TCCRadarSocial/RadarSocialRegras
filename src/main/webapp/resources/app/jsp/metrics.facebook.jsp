@@ -63,7 +63,8 @@
 		<div class="col-md-8">
 			<nvd3 options='options' data='data'></nvd3>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4"  style="text-align:center;">
+		<span>Reações por portal</span>
 			<svg id="test1" class="mypiechart" style="height: 450px;"></svg>
 		</div>
 	</div>
