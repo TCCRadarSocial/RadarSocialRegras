@@ -65,7 +65,14 @@ public class RedeSocialController {
 				});
 				
 				t.start();
-				 new ModelAndView("redirect:/listaRedes");
+				try {
+					Thread.sleep(4000);
+					list();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				 //new ModelAndView("redirect:/listaRedes");
 //				model.addObject("mensagem", "Facebook adicionado.");
 			}else{				
 				
@@ -77,6 +84,12 @@ public class RedeSocialController {
 			if(intTwitter.hasTwitter(intTwitter.autenticar(),nome) && !nome.equals("")){
 				System.out.println("twitter existe");
 				intTwitter.buscarDadosTwitter(intTwitter.autenticar(), nome);
+				try {
+					Thread.sleep(4000);
+					list();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 			else{
 //				System.out.println("twitter nao existe");
