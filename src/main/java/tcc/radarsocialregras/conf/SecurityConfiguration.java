@@ -29,10 +29,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception { 
 		http.authorizeRequests() 
 		.anyRequest().authenticated()
-	    .and().formLogin().loginPage("/login").permitAll()
+	    .and().formLogin().loginPage("/login")
+	    .defaultSuccessUrl("/home", false)
+        .permitAll()
 	    .and().httpBasic()
 	    .and()
-	    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
 	    .and() 
 	    .exceptionHandling() 
 	    .accessDeniedPage("/WEB-INF/views/error.jsp"); 
