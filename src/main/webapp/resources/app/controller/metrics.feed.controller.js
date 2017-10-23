@@ -739,6 +739,12 @@ angular
 							if (angular.element(document.querySelector('#portaisTwitter')).val() != ""
 									&& angular.element(document.querySelector('#portaisFace')).val()) {
 								carregaComparativo();
+								$scope.labelDataInicial = moment($scope.dataInicial,
+								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
+								'DD/MM/YYYY - HH:mm:ss');
+						$scope.labelDataFinal = moment($scope.dataFinal,
+								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
+								'DD/MM/YYYY - HH:mm:ss');
 							} else {
 								alert("Selecione os dois portais para comparar");
 							}
