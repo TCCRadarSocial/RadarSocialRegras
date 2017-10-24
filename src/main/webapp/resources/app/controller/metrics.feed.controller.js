@@ -618,13 +618,24 @@ angular
 											x : moment(value._id.$date).unix(),
 											y : value.sum_retweets
 										});
+									}else{
+										retweets.push({
+											x : moment(value._id.$date).unix(),
+											y : 0
+										});
 									}
 									if (value.sum_reactions != undefined) {
 										reactions.push({
 											x : moment(value._id.$date).unix(),
 											y : value.sum_reactions
 										});
+									}else{
+										reactions.push({
+											x : moment(value._id.$date).unix(),
+											y : 0
+										});
 									}
+									
 
 								});
 
