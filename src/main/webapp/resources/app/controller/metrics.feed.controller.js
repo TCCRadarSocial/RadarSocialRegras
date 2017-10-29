@@ -37,6 +37,20 @@ angular
 					$scope.dataFinal = moment().format('YYYY-MM-DDTHH:mm:ss')
 							+ '.000Z';
 
+					// comparativo datas
+
+					$scope.inicialComparativo = moment().subtract(7, 'days')
+							.format('DD/MM/YYYY - HH:mm:ss');
+					$scope.finalComparativo = moment().format(
+							'DD/MM/YYYY - HH:mm:ss');
+
+					$scope.dataInicialComparativo = moment()
+							.subtract(7, 'days').format('YYYY-MM-DDTHH:mm:ss')
+							+ '.000Z';
+					$scope.dataFinalComparativo = moment().format(
+							'YYYY-MM-DDTHH:mm:ss')
+							+ '.000Z';
+
 					$scope.redeSocial = "";
 					$scope.portal = "";
 					$scope.link = "";
@@ -214,6 +228,15 @@ angular
 								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
 								'DD/MM/YYYY - HH:mm:ss');
 						$scope.labelDataFinal = moment($scope.dataFinal,
+								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
+								'DD/MM/YYYY - HH:mm:ss');
+
+						$scope.labelDataInicialComparativo = moment(
+								$scope.dataInicialComparativo,
+								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
+								'DD/MM/YYYY - HH:mm:ss');
+						$scope.labelDataFinalComparativo = moment(
+								$scope.dataFinalComparativo,
 								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
 								'DD/MM/YYYY - HH:mm:ss');
 					}
@@ -591,8 +614,9 @@ angular
 						var baseQuery = '[{"portalFacebook":"'
 								+ $scope.facebookOpcao + '","portalTwitter":"'
 								+ $scope.twitterOpcao + '",	"dataInicial":"'
-								+ $scope.dataInicial + '",	"dataFinal":"'
-								+ $scope.dataFinal + '"}]';
+								+ $scope.dataInicialComparativo
+								+ '",	"dataFinal":"'
+								+ $scope.dataFinalComparativo + '"}]';
 						var query = JSON.parse(baseQuery);
 						var deferred = $q.defer();
 
@@ -723,26 +747,28 @@ angular
 
 					$scope.buscarComparativo = function() {
 
-						$scope.dataInicial = angular.element(
+						$scope.dataInicialComparativo = angular.element(
 								document.querySelector('#dataInicial')).val() != "" ? angular
 								.element(document.querySelector('#dataInicial'))
 								.val()
-								: $scope.inicial;
-						$scope.dataInicial = moment($scope.dataInicial,
+								: $scope.inicialComparativo;
+						$scope.dataInicialComparativo = moment(
+								$scope.dataInicialComparativo,
 								'DD/MM/YYYY - HH:mm:ss').format(
 								'YYYY-MM-DDTHH:mm:ss')
 								+ '.000Z';
-						$scope.dataFinal = angular.element(
+						$scope.dataFinalComparativo = angular.element(
 								document.querySelector('#dataFinal')).val() != "" ? angular
 								.element(document.querySelector('#dataFinal'))
 								.val()
-								: $scope.final;
-						$scope.dataFinal = moment($scope.dataFinal,
+								: $scope.finalComparativo;
+						$scope.dataFinalComparativo = moment(
+								$scope.dataFinalComparativo,
 								'DD/MM/YYYY - HH:mm:ss').format(
 								'YYYY-MM-DDTHH:mm:ss')
 								+ '.000Z';
 
-						if ($scope.dataInicial > $scope.dataFinal) {
+						if ($scope.dataInicialComparativo > $scope.dataFinalComparativo) {
 							alert("Selecione as datas corretamente");
 						} else {
 
@@ -755,12 +781,12 @@ angular
 															.querySelector('#portaisFace'))
 											.val()) {
 								carregaComparativo();
-								$scope.labelDataInicial = moment(
-										$scope.dataInicial,
+								$scope.labelDataInicialComparativo = moment(
+										$scope.dataInicialComparativo,
 										'YYYY-MM-DDTHH:mm:ss.000Z').utc()
 										.format('DD/MM/YYYY - HH:mm:ss');
-								$scope.labelDataFinal = moment(
-										$scope.dataFinal,
+								$scope.labelDataFinalComparativo = moment(
+										$scope.dataFinalComparativo,
 										'YYYY-MM-DDTHH:mm:ss.000Z').utc()
 										.format('DD/MM/YYYY - HH:mm:ss');
 							} else {

@@ -6,9 +6,9 @@
 		<div class='col-lg-12' align="center" style="margin-bottom:25px;">
 				<Strong>Filtros:</Strong> <br> <span
 					ng-if="labelDataInicial != ''">Data Inicial:
-					{{labelDataInicial}} |</span> 
+					{{labelDataInicialComparativo}} |</span> 
 					<span ng-if="labelDataFinal != ''">Data
-					Final: {{labelDataFinal}} |</span>
+					Final: {{labelDataFinalComparativo}} |</span>
 			</div>
 			<div class="col-lg-8">
 			<div class="col-lg-6">
