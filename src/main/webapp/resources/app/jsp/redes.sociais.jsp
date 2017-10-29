@@ -5,15 +5,15 @@
 		<form method="POST"
 			action="http://localhost:8080/RadarSocialRegras/salvaRedeSocial">
 			<div class="form-group">
-				<label for="sel1">Tipo Rede Social:</label> <select
+				<label for="sel1">Rede Social: *</label> <select
 					class="form-control" id="tipo" name="tipo">
 					<option value="facebook">Facebook</option>
 					<option value="twitter">Twitter</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="usr">Nome: *</label> <input type="text"
-					class="form-control" id="nome" name="nome">
+				<label for="usr">Portal: *</label> <input type="text"
+					class="form-control" id="nome" name="nome" placeholder="Final da url do portal desejado">
 			</div>
 			<button type="submit" class="btn btn-primary">Salvar</button>
 			<span style="color:red;" id="msg">${mensagem}</span>
@@ -22,8 +22,8 @@
 			<table id="tableRedes" class="table table-hover table-condensed">
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>Tipo</th>
+						<th>Portal</th>
+						<th>Rede Social</th>
 					</tr>
 				</thead>
 				<tbody>

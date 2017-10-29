@@ -40,7 +40,7 @@
 				</div>
 				</div>
 				<div class="form-group col-lg-6">
-					<label for="portais">Facebook:</label> <select class="form-control"
+					<label for="portais">Portal Facebook:</label> <select class="form-control"
 						ng-model="facebookOpcao" id="portaisFace">
 						<option value="">Selecione</option>
 						<option ng-repeat="f in facebookPortais"
@@ -48,7 +48,7 @@
 					</select>
 				</div>
 				<div class="form-group col-lg-6">
-					<label for="portais">Twitter:</label> <select class="form-control"
+					<label for="portais">Portal Twitter:</label> <select class="form-control"
 						ng-model="twitterOpcao" id="portaisTwitter">
 						<option value="">Selecione</option>
 						<option ng-repeat="t in twitterPortais" ng-if="t != '' && t != []"

@@ -618,7 +618,7 @@ angular
 											x : moment(value._id.$date).unix(),
 											y : value.sum_retweets
 										});
-									}else{
+									} else {
 										retweets.push({
 											x : moment(value._id.$date).unix(),
 											y : 0
@@ -629,13 +629,12 @@ angular
 											x : moment(value._id.$date).unix(),
 											y : value.sum_reactions
 										});
-									}else{
+									} else {
 										reactions.push({
 											x : moment(value._id.$date).unix(),
 											y : 0
 										});
 									}
-									
 
 								});
 
@@ -643,13 +642,13 @@ angular
 
 							$scope.data = [ {
 								values : retweets,
-								key : 'Retweets',
-								color : '#7777ff',
+								key : 'Retweets (Twitter)',
+								color : '#00aced',
 								area : false
 							}, {
 								values : reactions,
-								key : 'Reações',
-								color : '#2ca02c'
+								key : 'Reações (facebook)',
+								color : '#3b5998'
 							} ];
 						});
 					}
@@ -747,15 +746,23 @@ angular
 							alert("Selecione as datas corretamente");
 						} else {
 
-							if (angular.element(document.querySelector('#portaisTwitter')).val() != ""
-									&& angular.element(document.querySelector('#portaisFace')).val()) {
+							if (angular.element(
+									document.querySelector('#portaisTwitter'))
+									.val() != ""
+									&& angular
+											.element(
+													document
+															.querySelector('#portaisFace'))
+											.val()) {
 								carregaComparativo();
-								$scope.labelDataInicial = moment($scope.dataInicial,
-								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
-								'DD/MM/YYYY - HH:mm:ss');
-						$scope.labelDataFinal = moment($scope.dataFinal,
-								'YYYY-MM-DDTHH:mm:ss.000Z').utc().format(
-								'DD/MM/YYYY - HH:mm:ss');
+								$scope.labelDataInicial = moment(
+										$scope.dataInicial,
+										'YYYY-MM-DDTHH:mm:ss.000Z').utc()
+										.format('DD/MM/YYYY - HH:mm:ss');
+								$scope.labelDataFinal = moment(
+										$scope.dataFinal,
+										'YYYY-MM-DDTHH:mm:ss.000Z').utc()
+										.format('DD/MM/YYYY - HH:mm:ss');
 							} else {
 								alert("Selecione os dois portais para comparar");
 							}
