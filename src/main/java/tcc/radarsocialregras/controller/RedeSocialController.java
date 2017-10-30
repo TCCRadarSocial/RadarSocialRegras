@@ -48,7 +48,7 @@ public class RedeSocialController {
 	
 	@RequestMapping("/salvaRedeSocial")
 	public ModelAndView salvaRedeSocial(@RequestParam("nome") String nome,@RequestParam("tipo") String tipo) 
-			throws TwitterException{
+			throws TwitterException, ParseException{
 		ModelAndView model = new ModelAndView("redes.sociais");
 		
 		if(tipo.equals("facebook")){
