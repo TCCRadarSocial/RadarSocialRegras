@@ -9,7 +9,9 @@ import com.mongodb.AggregationOutput;
 import com.mongodb.DBCursor;
 import com.mongodb.util.JSON;
 
+import tcc.radarsocial.dao.FacebookDao;
 import tcc.radarsocial.dao.FeedsDao;
+import tcc.radarsocial.dao.TwitterDao;
 
 public class FeedRepository {
 
@@ -26,13 +28,21 @@ public class FeedRepository {
 		}
 	
 	public static String buscaPorFiltroLink(String link) throws ParseException{
+		String serialize = null;
+		if(link.contains("facebook")){
+			FacebookDao dao = new FacebookDao();		
+			DBCursor cursor = dao.buscaPorFiltroPorLink(link);
 		
+		    serialize = JSON.serialize(cursor);
+		    System.out.println(serialize);
+		}else if(link.contains("twitter")){
+			TwitterDao dao = new TwitterDao();		
+			DBCursor cursor = dao.buscaPorFiltroPorLink(link);
 		
-		FeedsDao dao = new FeedsDao();		
-		DBCursor cursor = dao.buscaPorFiltroPorLink(link);
-	
-	    String serialize = JSON.serialize(cursor);
-	    System.out.println(serialize);
+		    serialize = JSON.serialize(cursor);
+		    System.out.println(serialize);
+		}
+		
 		return serialize;
 		
 	}
