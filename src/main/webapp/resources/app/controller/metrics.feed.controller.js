@@ -642,37 +642,39 @@ angular
 											x : moment(value._id.$date).unix(),
 											y : value.sum_retweets
 										});
-									} else {
-										retweets.push({
-											x : moment(value._id.$date).unix(),
-											y : 0
-										});
 									}
+									// else {
+									// retweets.push({
+									// x : moment(value._id.$date).unix(),
+									// y : 0
+									// });
+									// }
 									if (value.sum_reactions != undefined) {
 										reactions.push({
 											x : moment(value._id.$date).unix(),
 											y : value.sum_reactions
 										});
-									} else {
-										reactions.push({
-											x : moment(value._id.$date).unix(),
-											y : 0
-										});
 									}
+									// else {
+									// reactions.push({
+									// x : moment(value._id.$date).unix(),
+									// y : 0
+									// });
+									// }
 
 								});
 
 							});
 
 							$scope.data = [ {
+								values : reactions,
+								key : 'Reações (facebook)',
+								color : '#3b5998'
+							}, {
 								values : retweets,
 								key : 'Retweets (Twitter)',
 								color : '#00aced',
 								area : false
-							}, {
-								values : reactions,
-								key : 'Reações (facebook)',
-								color : '#3b5998'
 							} ];
 						});
 					}
