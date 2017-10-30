@@ -7,6 +7,7 @@ angular
 
 					carregaPortaisSomenteFacebook();
 					carregaPortaisSomenteTwitter();
+					$scope.checkOrdenacao = 'ordenacaoDecrescente';
 
 					$scope.modalFace = function(link) {
 						$('#myModal').modal();

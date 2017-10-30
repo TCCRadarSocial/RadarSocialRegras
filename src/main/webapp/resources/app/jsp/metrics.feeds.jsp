@@ -79,6 +79,14 @@
 				    <option value="reactions" ng-if="checkRedeSocial == 'redeFacebook'">Reações</option>
 				    
 				  </select>
+				  	<div ng-if="ordenacao == 'dataCriacao'">
+					 	<div class="radio">
+						  <label><input type="radio" name="optionOrdenacao" ng-model="checkOrdenacao" value="ordenacaoDecrescente" ng-click="selecionaOrdenacao()">Decrescente</label>
+						</div>
+						<div class="radio">
+						  <label><input type="radio" name="optionOrdenacao" ng-model="checkOrdenacao" value="ordenacaoCrescente" ng-click="selecionaOrdenacao()">Crescente</label>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-3">
 					<label for="portais">Busca:</label>
