@@ -7,7 +7,12 @@ angular
 
 					carregaPortaisSomenteFacebook();
 					carregaPortaisSomenteTwitter();
-					$scope.checkOrdenacao = 'ordenacaoDecrescente';
+					$scope.checkOrdenacao = 'desc';
+					$scope.tipoOrdenacao = 'desc';
+
+					$scope.selecionaOrdenacao = function(value) {
+						$scope.tipoOrdenacao = value;
+					}
 
 					$scope.modalFace = function(link) {
 						$('#myModal').modal();
@@ -257,6 +262,7 @@ angular
 								+ '","dataInicial": "' + $scope.dataInicial
 								+ '","dataFinal": "' + $scope.dataFinal
 								+ '","orderBy": "' + $scope.ordenacao
+								+ '","tipoOrderBy": "' + $scope.tipoOrdenacao
 								+ '","palavraChave": "' + $scope.palavraChave
 								+ '"}]';
 						var query = JSON.parse(baseQuery);

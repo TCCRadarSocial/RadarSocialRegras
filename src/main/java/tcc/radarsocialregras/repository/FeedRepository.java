@@ -15,11 +15,11 @@ import tcc.radarsocial.dao.TwitterDao;
 
 public class FeedRepository {
 
-	public static String buscaPorFiltro(String redeSocial,String portal,String dataInicial, String dataFinal,String orderBy, String palavraChave) throws ParseException{
+	public static String buscaPorFiltro(String redeSocial,String portal,String dataInicial, String dataFinal,String orderBy, String tipoOrderBy, String palavraChave) throws ParseException{
 			
 			
 			FeedsDao dao = new FeedsDao();		
-			DBCursor cursor = dao.buscaPorFiltro(portal,dataInicial,dataFinal,redeSocial,orderBy,palavraChave);
+			DBCursor cursor = dao.buscaPorFiltro(portal,dataInicial,dataFinal,redeSocial,orderBy,tipoOrderBy,palavraChave);
 	
 	        String serialize = JSON.serialize(cursor);
 	        System.out.println(serialize);
