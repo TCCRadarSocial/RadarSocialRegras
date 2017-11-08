@@ -66,4 +66,16 @@ public class FacebookRepository {
 		return serialize;
 		
 	}
+	
+	public static String buscaPorFiltroFeeds(String portal,String dataInicial, String dataFinal, String link) throws ParseException{
+		
+		
+		FacebookDao dao = new FacebookDao();		
+		DBCursor cursor = dao.buscaPorFiltroFeeds(portal,dataInicial,dataFinal,link);
+
+        String serialize = JSON.serialize(cursor);
+        System.out.println(serialize);
+		return serialize;
+		
+	}
 }

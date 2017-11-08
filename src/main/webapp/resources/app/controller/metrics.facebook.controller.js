@@ -215,7 +215,7 @@ angular
 						var deferred = $q.defer();
 
 						var method = 'POST';
-						var url = '/RadarSocialRegras/facebookSearch';
+						var url = '/RadarSocialRegras/facebookSearchFeeds';
 						var req = {
 							method : method,
 							url : url,
@@ -310,11 +310,12 @@ angular
 								+ '","dataInicial": "' + $scope.dataInicial
 								+ '","dataFinal": "' + $scope.dataFinal
 								+ '","link":"' + $scope.link + '"}]';
+
 						var query = JSON.parse(baseQuery);
 						var deferred = $q.defer();
 
 						var method = 'POST';
-						var url = '/RadarSocialRegras/facebookSearch';
+						var url = '/RadarSocialRegras/facebookSearchFeeds';
 						var req = {
 							method : method,
 							url : url,
@@ -331,7 +332,7 @@ angular
 
 							data.map(function(metric) {
 
-								data = moment(metric.dataCriacao.$date,
+								var date = moment(metric.dataCriacao.$date,
 										'YYYY-MM-DDTHH:mm:ss.000Z').utc()
 										.format('DD/MM/YYYY - HH:mm:ss');
 
@@ -343,9 +344,8 @@ angular
 									likes : metric.likes,
 									shares : metric.shares,
 									reactions : metric.reactions,
-									dataCriacao : data
+									dataCriacao : date
 								});
-
 							})
 
 						});
