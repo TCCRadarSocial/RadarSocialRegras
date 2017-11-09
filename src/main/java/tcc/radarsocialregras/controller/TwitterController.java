@@ -57,4 +57,19 @@ public class TwitterController {
 		
 		return response.toString();
 	}
+	
+	@RequestMapping(value = "/twitterSearchFeeds", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String buscaPorFiltrosFeeds(@RequestBody String body) throws JSONException, ParseException{ 
+		
+//		String[] portal = body.split(":");
+		
+		JSONArray array = new JSONArray(body); 
+		String response = null;
+		for(int i=0; i<array.length(); i++){
+		    JSONObject jsonObj = array.getJSONObject(i);
+		    response = TwitterRepository.buscaPorFiltroFeeds(jsonObj.getString("portal"),jsonObj.getString("dataInicial"),jsonObj.getString("dataFinal"),jsonObj.getString("link"));
+		}
+		
+		return response.toString();
+	}
 }

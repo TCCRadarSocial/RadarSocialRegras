@@ -55,4 +55,16 @@ public class TwitterRepository {
 		return serialize;
 		
 	}
+	
+	public static String buscaPorFiltroFeeds(String portal,String dataInicial, String dataFinal, String link) throws ParseException{
+		
+		
+		TwitterDao dao = new TwitterDao();		
+		DBCursor cursor = dao.buscaPorFiltroFeeds(portal,dataInicial,dataFinal,link);
+
+        String serialize = JSON.serialize(cursor);
+        System.out.println(serialize);
+		return serialize;
+		
+	}
 }

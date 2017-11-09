@@ -217,7 +217,7 @@ angular
 						var deferred = $q.defer();
 
 						var method = 'POST';
-						var url = '/RadarSocialRegras/twitterSearch';
+						var url = '/RadarSocialRegras/twitterSearchFeeds';
 						var req = {
 							method : method,
 							url : url,
@@ -294,7 +294,7 @@ angular
 						var deferred = $q.defer();
 
 						var method = 'POST';
-						var url = '/RadarSocialRegras/twitterSearch';
+						var url = '/RadarSocialRegras/twitterSearchFeeds';
 						var req = {
 							method : method,
 							url : url,
